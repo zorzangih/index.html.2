@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homenagem para Minha Namorada</title>
+  <style>
+    :root{
+      --vermelho:#b30000;
+      --vermelho-escuro:#7f0000;
+      --branco:#ffffff;
+      --sombra:rgba(0,0,0,.35);
+      --altura-botao: 240px;
+      --raio: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--vermelho);
+      color: var(--branco);
+      display:flex;
+      min-height:100vh;
+    }
+    .foto-principal{
+      flex:1;
+      position:relative;
+      background: url("foto.4.jpeg") center/cover no-repeat;
+      border-right: 4px solid var(--branco);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .titulo-hero{
+      background: rgba(0,0,0,.35);
+      padding: 18px 22px; border-radius: var(--raio);
+      text-align:center;
+      backdrop-filter: blur(2px);
+    }
+    .titulo-hero h1{margin:0 0 6px 0; font-size: clamp(24px, 3.2vw, 42px);}
+    .titulo-hero p{margin:0; opacity:.9}
+    .conteudo{
+      flex:1;
+      display:flex; flex-direction:column;
+      background: linear-gradient(0deg, var(--vermelho-escuro), var(--vermelho));
+      padding: 20px 18px; gap:14px;
+      overflow-y:auto;
+    }
+    .subtitulo{margin:0 0 6px 0; font-weight:600; opacity:.95; text-align:center}
+    .lista-botoes{display:flex; flex-direction:column; gap:14px; align-items:center}
+    .card{
+      position:relative; width:min(720px, 92%); height: var(--altura-botao);
+      border:none; cursor:pointer; border-radius: var(--raio);
+      background-color:#a00; color:var(--branco);
+      background-size: cover; background-position:center; background-repeat:no-repeat;
+      overflow:hidden; text-align:left;
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      outline: 3px solid rgba(255,255,255,.25);
+    }
+    .card::before{
+      content:""; position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.45) 60%, rgba(0,0,0,.65) 100%);
+      pointer-events:none;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 14px 26px rgba(0,0,0,.35); filter: brightness(1.03); }
+    .card:active{ transform: translateY(-2px); }
+    .label{
+      position:absolute; left:16px; right:16px; bottom:14px;
+      font-size: clamp(16px, 2.2vw, 22px);
+      line-height:1.25; font-weight:700;
+      text-shadow: 0 2px 8px rgba(0,0,0,.7);
+    }
+    .modal{
+      position:fixed; inset:0; display:none; place-items:center;
+      background: rgba(0,0,0,.7); padding: 20px;
+      z-index: 50;
+    }
+    .modal.ativo{ display:grid; }
+    .caixa-modal{
+      width:min(900px, 96vw);
+      max-height: 94vh; overflow:auto;
+      background:#111; color:#fff; border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    }
+    .topo-modal{ display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,.15)}
+    .topo-modal h2{ margin:0; font-size: clamp(18px, 2.4vw, 22px); font-weight:700 }
+    .fechar{
+      background: transparent; color:#fff; border:none; font-size: 26px; line-height:1; cursor:pointer;
+      padding:6px 10px; border-radius:10px;
+    }
+    .fechar:hover{ background: rgba(255,255,255,.12); }
+    .conteudo-modal{ padding: 10px 16px 18px; }
+    .conteudo-modal img{ width:100%; height:auto; border-radius:14px; display:block; }
+    .texto-modal{ margin-top:12px; font-size: 18px; line-height:1.5 }
+    @media (max-width: 980px){
+      body{ flex-direction:column; }
+      .foto-principal{ min-height: 38vh; border-right:none; border-bottom:4px solid var(--branco); }
+      .conteudo{ min-height: 62vh; }
+    }
+  </style>
+</head>
+<body>
+  <section class="foto-principal" aria-label="Foto inicial do casal">
+    <div class="titulo-hero">
+      <h1>Para minha baixinha!❤️</h1>
+      <p>....TE GOSTO....</p>
+    </div>
+  </section>
+
+  <main class="conteudo">
+    <p class="subtitulo">CLIQUE ABAIXO PARA VER A DECLARAÇÃO COMPLETA!</p>
+    <div class="lista-botoes">
+      <button class="card" style="background-image:url('foto.1.jpeg')" data-imagem="fotos/foto1.jpeg" data-texto="Teus olhos castanhos brilham como estrelas no céu,
+Mesmo de longe, sinto teu riso que me leva ao véu.
+Tua inteligência e graça me fazem flutuar,
+E cada lembrança tua me faz sonhar.">
+        <span class="label">1</span>
+      </button>
+      <button class="card" style="background-image:url('foto.2.jpeg')" data-imagem="/Homenagem" data-texto="A lua tenta competir com teu olhar,
+Mas sua beleza faz o céu se envergonhar.
+E aquela festa, onde te beijei sem pensar,
+Foi o momento em que meu mundo começou a girar.">
+        <span class="label">2</span>
+      </button>
+      <button class="card" style="background-image:url('foto.1.jpeg')" data-imagem="fotos/foto3.jpeg" data-texto="Rir contigo é poesia que não se explica,
+Conversar contigo é viagem sem pressa.
+Mesmo distante, sinto tua presença,
+Teu jeito me encanta, tua alma me acalenta.">
+        <span class="label">3</span>
+      </button>
+      <button class="card" style="background-image:url('foto.6.jpeg')" data-imagem="fotos/foto4.jpeg" data-texto="Mesmo de longe, sinto teu sorriso iluminando meus dias.">
+        <span class="label">4</span>
+      </button>
+      <button class="card" style="background-image:url('foto.3.jpeg')" data-imagem="fotos/foto5.jpeg" data-texto="A sorte me trouxe até você, e o amor me faz querer ficar.">
+        <span class="label">5</span>
+      </button>
+      <button class="card" style="background-image:url('foto.1.jpeg')" data-imagem="fotos/foto6.jpeg" data-texto="Tão longe, e ainda assim tão perto,
+Tua luz é chama que me aquece por dentro.
+Se o amor é sorte, eu ganhei o universo,
+Ao te beijar, senti o momento mais certo.">
+        <span class="label">6</span>
+      </button>
+      <button class="card" style="background-image:url('foto.2.jpeg')" data-imagem="fotos/foto7.jpeg" data-texto="Você é a prova de que o coração sabe reconhecer a verdadeira beleza.">
+        <span class="label">7</span>
+      </button>
+    </div>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="caixa-modal" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+      <div class="topo-modal">
+        <h2 id="titulo-modal">Com amor</h2>
+        <button class="fechar" id="fechar" aria-label="Fechar">×</button>
+      </div>
+      <div class="conteudo-modal">
+        <img id="img-modal" src="" alt="Foto do casal" />
+        <p class="texto-modal" id="texto-modal"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const imgModal = document.getElementById('img-modal');
+    const textoModal = document.getElementById('texto-modal');
+    const btnFechar = document.getElementById('fechar');
+
+    function abrirModal(img, texto, titulo){
+      if(img) imgModal.src = img; else imgModal.removeAttribute('src');
+      textoModal.innerText = texto || '';
+      const tituloEl = document.getElementById('titulo-modal');
+      tituloEl.textContent = titulo || 'Com amor';
+      modal.classList.add('ativo');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function fecharModal(){
+      modal.classList.remove('ativo');
+      modal.setAttribute('aria-hidden','true');
+      imgModal.src = '';
+      textoModal.textContent = '';
+    }
+
+    document.querySelectorAll('.card').forEach(card=>{
+      const bg = card.getAttribute('data-imagem');
+      if(bg && !card.style.backgroundImage){
+        card.style.backgroundImage = `url('${bg}')`;
+      }
+      card.addEventListener('click', ()=>{
+        const img = card.getAttribute('data-imagem');
+        const texto = card.getAttribute('data-texto');
+        const titulo = card.querySelector('.label')?.textContent?.trim();
+        abrirModal(img, texto, titulo);
+      });
+    });
+
+    btnFechar.addEventListener('click', fecharModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) fecharModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('ativo')) fecharModal(); });
+  </script>
+</body>
+</html>
